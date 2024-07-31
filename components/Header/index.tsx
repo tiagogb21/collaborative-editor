@@ -1,15 +1,27 @@
-import Link from "next/link"
-import { SiFiles } from "react-icons/si";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
+import Link from "next/link";
 
-export const Header = ({children}:HeaderProps) => {
+export const Header = ({ children, className }: HeaderProps) => {
     return (
-        <header>
-            <div className="container px-6 py-4">
-                <Link href="/" className="md:flex-1">
-                    <SiFiles />
-                    LiveDocs
-                </Link>
-            </div>
-        </header>
-    )
-}
+        <div className={cn("header", className)}>
+            <Link href="/" className="md:flex-1">
+                <Image
+                    src="/assets/images/logo.svg"
+                    alt="Logo with name"
+                    width={120}
+                    height={32}
+                    className="hidden md:block"
+                />
+                <Image
+                    src="/assets/images/logo-icon.svg"
+                    alt="Logo"
+                    width={32}
+                    height={32}
+                    className="mr-2 md:hidden"
+                />
+            </Link>
+            {children}
+        </div>
+    );
+};

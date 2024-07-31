@@ -3,10 +3,6 @@ import { Inter as FontSans } from "next/font/google";
 import {dark} from '@clerk/themes';
 import {
     ClerkProvider,
-    SignInButton,
-    SignedIn,
-    SignedOut,
-    UserButton,
 } from "@clerk/nextjs";
 import { cn } from "@/lib/utils";
 
@@ -31,21 +27,20 @@ export default function RootLayout({
         <ClerkProvider
             appearance={{
                 baseTheme: dark,
+                variables: {
+                    colorPrimary: "#3371FF",
+                    fontSize: "16px",
+                }
             }}
         >
             <html lang="en">
+                <link rel="icon" href="/assets/images/logo.png" sizes="any" />
                 <body
                     className={cn(
                         "min-h-screen bg-background font-sans antialiased",
                         fontSans.variable
                     )}
                 >
-                    <SignedOut>
-                        <SignInButton />
-                    </SignedOut>
-                    <SignedIn>
-                        <UserButton />
-                    </SignedIn>
                     {children}
                 </body>
             </html>
